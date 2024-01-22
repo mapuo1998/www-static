@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Forex Data Visualization</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Data Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
 <body>
     <div id="data-container">
         <h1>Forex Data Visualization</h1>
         <div id="forex-chart">
-            <img id="forex-image" src="images/USD-AUD.jpg" alt="Forex Chart Image">
+            <div id="myDiv"></div>
         </div>
-        
-        <!-- Add your forex data visualization elements here -->
-        
         <div id="currency-links">
+            <a href="#" onclick="changeChart('ALL')">ALL</a>
             <a href="#" onclick="changeChart('USD-AUD')">USD-AUD</a>
             <a href="#" onclick="changeChart('USD-CND')">USD-CND</a>
             <a href="#" onclick="changeChart('USD-EUR')">USD-EUR</a>
@@ -24,14 +22,9 @@
             <a href="#" onclick="changeChart('USD-RUB')">USD-RUB</a>
         </div>
     </div>
-
     <div id="news-container">
-        <h1>News Headlines</h1>
-        <ul id="news-list">
-            <!-- News items will be dynamically added here using JavaScript -->
-        </ul>
+        <ul id="news-list"></ul>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

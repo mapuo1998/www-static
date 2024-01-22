@@ -1,3 +1,4 @@
+// Sample headlines
 const newsData = [
     "USD Strengthens Against Major Currencies",
     "Eurozone Economic Outlook Improves",
@@ -9,7 +10,6 @@ const newsData = [
     "USD-EUR Sees Stability Amidst Market Fluctuations",
     "USD-GBP Faces Challenges with Brexit Negotiations",
     "USD-RUB Gains Traction in Russian Markets",
-    // Add more headlines
     "Stock Markets Experience Volatility",
     "Cryptocurrency Market Surges to New Heights",
     "Federal Reserve Announces Interest Rate Decision",
@@ -23,8 +23,11 @@ const newsData = [
     "Economic Recovery Spurs Investor Confidence"
 ];
 
+const currencies = ['USD-AUD', 'USD-CND', 'USD-EUR', 'USD-GBP', 'USD-RUB'];
+
 function populateNews() {
     const newsList = document.getElementById('news-list');
+    newsList.innerHTML = ''; // Clear existing news list
 
     newsData.forEach((headline) => {
         const listItem = document.createElement('li');
@@ -35,8 +38,59 @@ function populateNews() {
 }
 
 function changeChart(currency) {
-    const forexImage = document.getElementById('forex-image');
-    forexImage.src = `images/${currency}.jpg`;
+    // Update news and forex chart (if needed)
+
+    // Update Plotly chart
+    const plotlyData = getFakeChartData(currency);
+
+    Plotly.newPlot('myDiv', plotlyData, { title: `Forex Chart - ${currency}` });
 }
 
+function getFakeChartData(currency) {
+    const plotlyData = [];
+
+    // Sample data for different currencies
+    if (currency === 'ALL') {
+        currencies.forEach((c) => {
+            plotlyData.push({
+                x: [1, 2, 3, 4],
+                y: [getRandomValue(), getRandomValue(), getRandomValue(), getRandomValue()],
+                type: 'scatter',
+                mode: 'lines',
+                line: { color: getRandomColor() },
+                name: c
+            });
+        });
+    } else {
+        const data = {
+            x: [1, 2, 3, 4],
+            y: [getRandomValue(), getRandomValue(), getRandomValue(), getRandomValue()],
+            type: 'scatter',
+            mode: 'lines',
+            line: { color: getRandomColor() },
+            name: currency
+        };
+        plotlyData.push(data);
+    }
+
+    return plotlyData;
+}
+
+function getRandomValue() {
+    return Math.floor(Math.random() * 20) + 1;
+}
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Initial population of news
 populateNews();
+
+// Show chart for the default currency on page load
+changeChart('ALL');
